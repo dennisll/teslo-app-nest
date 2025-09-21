@@ -25,14 +25,15 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
         ssl: process.env.STAGE === 'prod' ? 
         {rejectUnauthorized: false} : null
       },
+      url: process.env.DATABASE_URL,
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT!,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USERNAME,
-      password: process.env.POSTGRES_PASSWORD,
+      // host: process.env.DB_HOST,
+      // port: +process.env.DB_PORT!,
+      // database: process.env.DB_NAME,
+      // username: process.env.DB_USERNAME,
+      // password: process.env.POSTGRES_PASSWORD,
       autoLoadEntities: true,
-      synchronize: true //en produccion deberia ser false
+      synchronize: false //en produccion deberia ser false
     }),
     ProductsModule,
     CommonModule,
