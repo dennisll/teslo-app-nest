@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { WebSocketGateway } from '@nestjs/websockets';
 
 
 async function bootstrap() {
@@ -24,6 +25,9 @@ async function bootstrap() {
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
+
+  app.enableCors();
+  app.enableCors( {} );
 
   await app.listen(+process.env.PORT!);  //process.env.PORT ?? 3000
   logger.log(`App running on port:${process.env.PORT}`);
